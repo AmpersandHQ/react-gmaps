@@ -1,35 +1,39 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _createReactClass = require('create-react-class');
 
 var _createReactClass2 = _interopRequireDefault(_createReactClass);
 
-var _mixinsListener = require('../mixins/listener');
+var _listener = require('../mixins/listener');
 
-var _mixinsListener2 = _interopRequireDefault(_mixinsListener);
+var _listener2 = _interopRequireDefault(_listener);
 
-var _utilsCompareProps = require('../utils/compare-props');
+var _compareProps = require('../utils/compare-props');
 
-var _utilsCompareProps2 = _interopRequireDefault(_utilsCompareProps);
+var _compareProps2 = _interopRequireDefault(_compareProps);
 
-exports['default'] = function (name, latLngProp, events) {
-  return (0, _createReactClass2['default'])({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    mixins: [_mixinsListener2['default']],
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+exports.default = function (name, latLngProp, events) {
+  return (0, _createReactClass2.default)({
+
+    mixins: [_listener2.default],
 
     entity: null,
 
@@ -38,33 +42,25 @@ exports['default'] = function (name, latLngProp, events) {
       this.entity = new google.maps[name](options);
       this.addListeners(this.entity, events);
     },
-
     componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-      if (!(0, _utilsCompareProps2['default'])(this.props, nextProps)) {
+      if (!(0, _compareProps2.default)(this.props, nextProps)) {
         var options = this.getOptions(nextProps);
         this.entity.setOptions(options);
       }
     },
-
     componentWillUnmount: function componentWillUnmount() {
       this.entity.setMap(null);
       this.removeListeners();
       this.entity = null;
     },
-
     getEntity: function getEntity() {
       return this.entity;
     },
-
     getOptions: function getOptions(props) {
       return _extends({}, props, _defineProperty({}, latLngProp, new google.maps.LatLng(props.lat, props.lng)));
     },
-
     render: function render() {
       return null;
     }
-
   });
 };
-
-module.exports = exports['default'];

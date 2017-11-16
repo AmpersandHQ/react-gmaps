@@ -1,12 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _react = require('react');
 
@@ -20,29 +18,35 @@ var _createReactClass = require('create-react-class');
 
 var _createReactClass2 = _interopRequireDefault(_createReactClass);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _objectAssign = require('object-assign');
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-var _eventsMap = require('../events/map');
+var _map = require('../events/map');
 
-var _eventsMap2 = _interopRequireDefault(_eventsMap);
+var _map2 = _interopRequireDefault(_map);
 
-var _mixinsListener = require('../mixins/listener');
+var _listener = require('../mixins/listener');
 
-var _mixinsListener2 = _interopRequireDefault(_mixinsListener);
+var _listener2 = _interopRequireDefault(_listener);
 
-var _utilsGoogleMaps = require('../utils/google-maps');
+var _googleMaps = require('../utils/google-maps');
 
-var _utilsGoogleMaps2 = _interopRequireDefault(_utilsGoogleMaps);
+var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-var _utilsCompareProps = require('../utils/compare-props');
+var _compareProps = require('../utils/compare-props');
 
-var _utilsCompareProps2 = _interopRequireDefault(_utilsCompareProps);
+var _compareProps2 = _interopRequireDefault(_compareProps);
 
-var Gmaps = (0, _createReactClass2['default'])({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-  mixins: [_mixinsListener2['default']],
+var Gmaps = (0, _createReactClass2.default)({
+
+  mixins: [_listener2.default],
 
   map: null,
 
@@ -51,37 +55,31 @@ var Gmaps = (0, _createReactClass2['default'])({
       isMapCreated: false
     };
   },
-
   componentDidMount: function componentDidMount() {
     this.setState({
-      callbackIndex: _utilsGoogleMaps2['default'].load(this.props.params, this.mapsCallback)
+      callbackIndex: _googleMaps2.default.load(this.props.params, this.mapsCallback)
     });
   },
-
   componentWillUnmount: function componentWillUnmount() {
-    _utilsGoogleMaps2['default'].removeCallback(this.state.callbackIndex);
+    _googleMaps2.default.removeCallback(this.state.callbackIndex);
     this.removeListeners();
   },
-
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    if (this.map && !(0, _utilsCompareProps2['default'])(this.props, nextProps)) {
+    if (this.map && !(0, _compareProps2.default)(this.props, nextProps)) {
       this.map.setOptions(_extends({}, nextProps, {
         center: new google.maps.LatLng(nextProps.lat, nextProps.lng)
       }));
     }
   },
-
   getMap: function getMap() {
     return this.map;
   },
-
   mapsCallback: function mapsCallback() {
     this.createMap();
-    this.addListeners(this.map, _eventsMap2['default']);
+    this.addListeners(this.map, _map2.default);
   },
-
   createMap: function createMap() {
-    var node = _reactDom2['default'].findDOMNode(this);
+    var node = _reactDom2.default.findDOMNode(this);
     this.map = new google.maps.Map(node, _extends({}, this.props, {
       center: new google.maps.LatLng(this.props.lat, this.props.lng)
     }));
@@ -92,35 +90,31 @@ var Gmaps = (0, _createReactClass2['default'])({
       this.props.onMapCreated(this.map);
     }
   },
-
   getChildren: function getChildren() {
     var _this = this;
 
-    return _react2['default'].Children.map(this.props.children, function (child) {
-      if (!_react2['default'].isValidElement(child)) {
+    return _react2.default.Children.map(this.props.children, function (child) {
+      if (!_react2.default.isValidElement(child)) {
         return child;
       }
-      return _react2['default'].cloneElement(child, {
+      return _react2.default.cloneElement(child, {
         ref: child.ref,
         map: _this.map
       });
     });
   },
-
   render: function render() {
-    var style = (0, _objectAssign2['default'])({
+    var style = (0, _objectAssign2.default)({
       width: this.props.width,
       height: this.props.height
     }, this.props.style);
-    return _react2['default'].createElement(
+    return _react2.default.createElement(
       'div',
       { style: style, className: this.props.className },
       this.props.loadingMessage || 'Loading...',
       this.state.isMapCreated ? this.getChildren() : null
     );
   }
-
 });
 
-exports['default'] = Gmaps;
-module.exports = exports['default'];
+exports.default = Gmaps;
