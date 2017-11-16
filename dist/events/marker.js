@@ -1,9 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports['default'] = {
+exports.default = {
   onAnimationChanged: 'animation_changed',
   onClick: 'click',
   onClickableChanged: 'clickable_changed',
@@ -26,4 +26,3 @@ exports['default'] = {
   onVisibleChanged: 'visible_changed',
   onZindexChanged: 'zindex_changed'
 };
-module.exports = exports['default'];

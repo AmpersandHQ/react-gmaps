@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var Listener = {
-
   addListeners: function addListeners(entity, events) {
     for (var prop in this.props) {
       if (this.props.hasOwnProperty(prop) && events[prop]) {
@@ -18,7 +17,6 @@ var Listener = {
       }
     }
   },
-
   removeListeners: function removeListeners() {
     if (window.google && this.listeners) {
       this.listeners.forEach(function (listener) {
@@ -26,8 +24,6 @@ var Listener = {
       });
     }
   }
-
 };
 
-exports["default"] = Listener;
-module.exports = exports["default"];
+exports.default = Listener;

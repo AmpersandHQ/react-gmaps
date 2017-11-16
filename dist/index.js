@@ -1,28 +1,29 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Circle = exports.InfoWindow = exports.Marker = exports.Gmaps = undefined;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _gmaps = require('./components/gmaps');
 
-var _componentsGmaps = require('./components/gmaps');
+var _gmaps2 = _interopRequireDefault(_gmaps);
 
-var _componentsGmaps2 = _interopRequireDefault(_componentsGmaps);
+var _marker = require('./components/marker');
 
-var _componentsMarker = require('./components/marker');
+var _marker2 = _interopRequireDefault(_marker);
 
-var _componentsMarker2 = _interopRequireDefault(_componentsMarker);
+var _infoWindow = require('./components/info-window');
 
-var _componentsInfoWindow = require('./components/info-window');
+var _infoWindow2 = _interopRequireDefault(_infoWindow);
 
-var _componentsInfoWindow2 = _interopRequireDefault(_componentsInfoWindow);
+var _circle = require('./components/circle');
 
-var _componentsCircle = require('./components/circle');
+var _circle2 = _interopRequireDefault(_circle);
 
-var _componentsCircle2 = _interopRequireDefault(_componentsCircle);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.Gmaps = _componentsGmaps2['default'];
-exports.Marker = _componentsMarker2['default'];
-exports.InfoWindow = _componentsInfoWindow2['default'];
-exports.Circle = _componentsCircle2['default'];
+exports.Gmaps = _gmaps2.default;
+exports.Marker = _marker2.default;
+exports.InfoWindow = _infoWindow2.default;
+exports.Circle = _circle2.default;

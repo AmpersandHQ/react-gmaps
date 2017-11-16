@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import Listener from '../mixins/listener';
 import compareProps from '../utils/compare-props';
