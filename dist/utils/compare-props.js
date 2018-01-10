@@ -1,10 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports['default'] = function (props, nextProps) {
+exports.default = function (props, nextProps) {
 
   var propsKeys = Object.keys(props);
   var nextPropsKeys = Object.keys(nextProps);
@@ -21,5 +21,3 @@ exports['default'] = function (props, nextProps) {
 
   return true;
 };
-
-module.exports = exports['default'];
